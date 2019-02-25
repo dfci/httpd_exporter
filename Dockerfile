@@ -11,6 +11,6 @@ RUN env GO15VENDOREXPERIMENT=1 \
         GOARCH=amd64 \
     go build -o apache_exporter apache_exporter.go && \
     cp ./apache_exporter /apache_exporter
-RUN apk add ca-certificates
+RUN apt-get update && apt-get -y install ca-certificates
 
 ENTRYPOINT ["/apache_exporter"]
