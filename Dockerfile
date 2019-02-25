@@ -11,10 +11,6 @@ RUN env GO15VENDOREXPERIMENT=1 \
         GOARCH=amd64 \
     go build -o apache_exporter apache_exporter.go && \
     cp ./apache_exporter /apache_exporter
-
-# Multistage
-FROM scratch
-COPY --from=builder /apache_exporter /apache_exporter
 RUN apk add ca-certificates
 
 ENTRYPOINT ["/apache_exporter"]
