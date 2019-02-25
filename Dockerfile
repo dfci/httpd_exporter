@@ -15,5 +15,6 @@ RUN env GO15VENDOREXPERIMENT=1 \
 # Multistage
 FROM scratch
 COPY --from=builder /apache_exporter /apache_exporter
+RUN apk add ca-certificates
 
 ENTRYPOINT ["/apache_exporter"]
